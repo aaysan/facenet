@@ -35,8 +35,10 @@ import facenet
 import align.detect_face
 import random
 from time import sleep
+import time
 
 def main(args):
+    tinit = time.time()
     sleep(random.random())
     output_dir = os.path.expanduser(args.output_dir)
     if not os.path.exists(output_dir):
@@ -92,8 +94,10 @@ def main(args):
                         if img.ndim == 2:
                             img = facenet.to_rgb(img)
                         img = img[:,:,0:3]
-    
+                        t0 = time.time()
                         bounding_boxes, _ = align.detect_face.detect_face(img, minsize, pnet, rnet, onet, threshold, factor)
+                        t1 = time.time()
+                        print("Total Time: " + str(t1 - t0))
                         nrof_faces = bounding_boxes.shape[0]
                         if nrof_faces>0:
                             det = bounding_boxes[:,0:4]
@@ -133,7 +137,8 @@ def main(args):
                         else:
                             print('Unable to align "%s"' % image_path)
                             text_file.write('%s\n' % (output_filename))
-                            
+    tfin = time.time()
+    print("Total Time: " + str(tfin - tinit))
     print('Total number of images: %d' % nrof_images_total)
     print('Number of successfully aligned images: %d' % nrof_successfully_aligned)
             

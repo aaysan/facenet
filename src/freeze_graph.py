@@ -1,7 +1,7 @@
 """Imports a model metagraph and checkpoint file, converts the variables to constants
 and exports the model as a graphdef protobuf
 """
-# MIT License
+# MIT Licensefres
 # 
 # Copyright (c) 2016 David Sandberg
 # 
@@ -52,7 +52,7 @@ def main(args):
             saver.restore(tf.get_default_session(), os.path.join(model_dir_exp, ckpt_file))
             
             # Retrieve the protobuf graph definition and fix the batch norm nodes
-            input_graph_def = sess.graph.as_graph_def()
+         input_graph_def = sess.graph.as_graph_def()
             
             # Freeze the graph def
             output_graph_def = freeze_graph_def(sess, input_graph_def, 'embeddings,label_batch')
