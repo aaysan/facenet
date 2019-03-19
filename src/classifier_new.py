@@ -120,14 +120,28 @@ def main(args):
                 best_class_probabilities = predictions[np.arange(len(best_class_indices)), best_class_indices]
 
                 # res = []
+                min = 1.0
+                max = 0.0
+                sum = 0.0
                 for i in range(len(best_class_indices)):
                     print('%s' % class_names[best_class_indices[i]])
                     print('%.3f' % best_class_probabilities[i])
-                    return best_class_probabilities[i]
+                    tmp = best_class_probabilities[i]
+                    sum += tmp
+
+                    if tmp < min:
+                        min = tmp
+                    if tmp > max:
+                        max = tmp
+
+                    # return best_class_probabilities[i])
                 #     print('%4d  %s: %.3f' % (i, class_names[best_class_indices[i]], best_class_probabilities[i]))
                 #
-                # accuracy = np.mean(np.equal(best_class_indices, labels))
-                # print('Accuracy: %.3f' % accuracy)
+                accuracy = np.mean(np.equal(best_class_indices, labels))
+                print('Accuracy: %.3f' % accuracy)
+                print('Min value: %.3f' % min)
+                print('Max value: %.3f' % max)
+                print('Average value: %.3f' % (sum/len(best_class_indices))))
 
 
 def split_dataset(dataset, min_nrof_images_per_class, nrof_train_images_per_class):
