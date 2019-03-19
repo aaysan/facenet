@@ -141,7 +141,7 @@ def main(args):
                 print('Accuracy: %.3f' % accuracy)
                 print('Min value: %.3f' % min)
                 print('Max value: %.3f' % max)
-                print('Average value: %.3f' % (sum/len(best_class_indices))))
+                print('Average value: %.3f' % (sum/len(best_class_indices)))
 
 
 def split_dataset(dataset, min_nrof_images_per_class, nrof_train_images_per_class):
