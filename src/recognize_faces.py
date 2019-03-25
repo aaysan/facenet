@@ -50,52 +50,52 @@ def get_name():
     # print(type(file))
     # return "Done"
 
-    file.save(file.filename)
+    file.save("aligned/somename/" + file.filename)
 
     # os.system("python align/align_dataset_mtcnn.py original aligned --image_size 182 --margin 44")
     # os.system("rm -f aligned/somename/tmp.png")
     # t0 = time.time()
     t_downloaded = time.time()
     t_init = time.time()
-    img = cv.imread(file.filename)
-    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-    print(faces)
-
-    x = faces[0][0]
-    y = faces[0][1]
-    w = faces[0][2]
-    h = faces[0][3]
-
-    roi_color = img[y:y + h, x:x + w]
-
-    res = cv.resize(roi_color, dsize=(160, 160), interpolation=cv.INTER_CUBIC)
-    # cv.imwrite("res.jpg", res)
-
-    # detector = MTCNN()
+    # img = cv.imread(file.filename)
+    # gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    # ## TODO: add try catch statements
+    # faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    # print(faces)
     #
-    # result = detector.detect_faces(im)
-    # try:
-    #     bounding_box = result[0]['box']  # this is the bounding box around the face
+    # x = faces[0][0]
+    # y = faces[0][1]
+    # w = faces[0][2]
+    # h = faces[0][3]
     #
-    # except:
-    #     return "Image had no face detected."
-    #     return ""
+    # roi_color = img[y:y + h, x:x + w]
     #
-    # x1 = bounding_box[0]
-    # x2 = bounding_box[0] + bounding_box[2]
-    # y1 = bounding_box[1]
-    # y2 = bounding_box[1] + bounding_box[3]
-    # crop_img = im[y1:y2, x1:x2]
-    # print(crop_img.shape)
-    # # final_img = np.reshape(crop_img,(160,160,3))
-    # res = cv2.resize(crop_img, dsize=(160, 160), interpolation=cv2.INTER_CUBIC)
-
-    cv.imwrite("aligned/somename/tmp.png", res)
-    # t1 = time.time()
-
-    # print(t1 - t0)
+    # res = cv.resize(roi_color, dsize=(160, 160), interpolation=cv.INTER_CUBIC)
+    # # cv.imwrite("res.jpg", res)
+    #
+    # # detector = MTCNN()
+    # #
+    # # result = detector.detect_faces(im)
+    # # try:
+    # #     bounding_box = result[0]['box']  # this is the bounding box around the face
+    # #
+    # # except:
+    # #     return "Image had no face detected."
+    # #     return ""
+    # #
+    # # x1 = bounding_box[0]
+    # # x2 = bounding_box[0] + bounding_box[2]
+    # # y1 = bounding_box[1]
+    # # y2 = bounding_box[1] + bounding_box[3]
+    # # crop_img = im[y1:y2, x1:x2]
+    # # print(crop_img.shape)
+    # # # final_img = np.reshape(crop_img,(160,160,3))
+    # # res = cv2.resize(crop_img, dsize=(160, 160), interpolation=cv2.INTER_CUBIC)
+    #
+    # cv.imwrite("aligned/somename/tmp.png", res)
+    # # t1 = time.time()
+    #
+    # # print(t1 - t0)
 
     t_fin = time.time()
     t0 = time.time()
