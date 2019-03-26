@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import tensorflow as tf
 import numpy as np
-import facenet
+import facenet as facenet
 import pickle
 
 
@@ -17,7 +17,6 @@ def classify_face(sess,graph,images_placeholder,embeddings,phase_train_placehold
     with graph.as_default():
 
 
-        print("loaded model")
 
         # images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
         # embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
