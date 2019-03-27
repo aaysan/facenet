@@ -8,12 +8,12 @@ import facenet as facenet
 import classify_faces as classify_faces
 import cv2 as cv
 
+
 from flask import Flask
 
 def create_app():
     app = Flask(__name__)
     return app
-
 
 app = create_app()
 sess = None
