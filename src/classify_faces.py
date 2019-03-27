@@ -9,7 +9,7 @@ import pickle
 
 def classify_face(sess,graph,images_placeholder,embeddings,phase_train_placeholder,embedding_size):
     img_paths = ["aligned/somename/tmp.png"]
-    pickle_file = "../model/my_model.pkl"
+    pickle_file = "model/my_model.pkl"
     # model = "../../pretrained_model/"
 
 

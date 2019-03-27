@@ -32,7 +32,7 @@ def setup_model():
     currentdir = os.getcwd()
     pythonpath = currentdir  ##+ "/facenet/src"
     os.environ["PYTHONPATH"] = pythonpath
-    model = "../pretrained_model/"
+    model = "pretrained_model/"
 
     graph = tf.Graph()
     print("Hello")
