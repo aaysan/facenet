@@ -10,7 +10,6 @@ fastcache==1.0.2
 Flask==1.0.2
 Flask-Cors==3.0.7
 glob2==0.6
-gmpy2==2.0.8
 gunicorn==19.9.0
 h5py==2.8.0
 heapdict==1.0.0
