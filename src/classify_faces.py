@@ -4,13 +4,13 @@ from __future__ import print_function
 
 import tensorflow as tf
 import numpy as np
-import facenet as facenet
+import src.facenet as facenet
 import pickle
 
 
 def classify_face(sess,graph,images_placeholder,embeddings,phase_train_placeholder,embedding_size):
     img_paths = ["aligned/somename/tmp.png"]
-    pickle_file = "../../model/my_model.pkl"
+    pickle_file = "../model/my_model.pkl"
     # model = "../../pretrained_model/"
 
 

@@ -1,1 +1,1 @@
-web: gunicorn recognize_faces:app
+web: gunicorn src.recognize_faces:app

@@ -4,8 +4,8 @@ from flask import request
 import os
 import time
 import tensorflow as tf
-import facenet as facenet
-import classify_faces as classify_faces
+import src.facenet as facenet
+import src.classify_faces as classify_faces
 import cv2 as cv
 
 
@@ -32,7 +32,7 @@ def setup_model():
     currentdir = os.getcwd()
     pythonpath = currentdir  ##+ "/facenet/src"
     os.environ["PYTHONPATH"] = pythonpath
-    model = "../../pretrained_model/"
+    model = "../pretrained_model/"
 
     graph = tf.Graph()
     print("Hello")
