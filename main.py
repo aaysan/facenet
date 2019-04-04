@@ -36,12 +36,7 @@ embedding_size = None
 def setup_model():
     # pass
     print("STARTING")
-    # os.system("heroku config:set AWS_ACCESS_KEY_ID=AKIAJXNKTA3OEX4KLAHQ AWS_SECRET_ACCESS_KEY=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 region=us-east-2")
 
-    # if "pretrained_model" not in os.listdir():
-    #     os.system("aws s3 sync s3://recognizefaces-assets .")
-    # else:
-    #     os.system("ls")
 
 
     global graph,images_placeholder,embeddings,phase_train_placeholder,embedding_size,sess
