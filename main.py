@@ -1,4 +1,4 @@
-#use FLASK_APP=recognize_faces.py flask run
+#use FLASK_APP=main.py flask run
 
 from flask import request
 import os
@@ -9,16 +9,18 @@ import src.classify_faces as classify_faces
 import cv2 as cv
 
 
+
 from flask import Flask
 
-def create_app():
-    app = Flask(__name__)
-    return app
 
-app = create_app()
+
+app = Flask(__name__)
+
+
 sess = None
-face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_cascade = cv.CascadeClassifier('src/haarcascade_frontalface_default.xml')
 print("TESTING")
+# os.system("rm -r -f pretrained_model/* pretrained_model")
 
 graph = None
 images_placeholder = None
@@ -26,8 +28,19 @@ embeddings = None
 phase_train_placeholder = None
 embedding_size = None
 
+
 @app.before_first_request
 def setup_model():
+    # pass
+    print("STARTING")
+    # os.system("heroku config:set AWS_ACCESS_KEY_ID=AKIAJXNKTA3OEX4KLAHQ AWS_SECRET_ACCESS_KEY=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 region=us-east-2")
+
+    # if "pretrained_model" not in os.listdir():
+    #     os.system("aws s3 sync s3://recognizefaces-assets .")
+    # else:
+    #     os.system("ls")
+
+
     global graph,images_placeholder,embeddings,phase_train_placeholder,embedding_size,sess
     currentdir = os.getcwd()
     pythonpath = currentdir  ##+ "/facenet/src"
@@ -46,26 +59,33 @@ def setup_model():
     embedding_size = embeddings.get_shape()[1]
     print("loaded")
 
-        # app.run(debug=False)
 
+
+    # app.run(debug=False)
+
+# setup_model()
 
 
 @app.route("/")
 def hello():
+    # setup_model()
     return "Hello World!"
+
+@app.route("/testme")
+def testme():
+    return "This test works"
 
 
 @app.route('/get_name', methods=['POST'])
 def get_name():
-
+    # pass
     tstart = time.time()
-    os.system("rm -f aligned/somename/*")
     file = request.files['file']
 
     print(file.filename)
-    file.save("aligned/somename/" + file.filename)
+    file.save(file.filename)
 
-    img = cv.imread("aligned/somename/" + file.filename)
+    img = cv.imread(file.filename)
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
@@ -78,7 +98,7 @@ def get_name():
 
     res = cv.resize(roi_color, dsize=(160, 160), interpolation=cv.INTER_CUBIC)
 
-    cv.imwrite("aligned/somename/tmp.png", res)
+    cv.imwrite("tmp.png", res)
 
     t0 = time.time()
     a, b = classify_faces.classify_face(sess,graph,images_placeholder,embeddings,phase_train_placeholder,embedding_size)
@@ -98,7 +118,7 @@ def get_name():
 
 
 if __name__ == '__main__':
-    pass
+    app.run(host="0.0.0.0", port=8080, debug=True)
     # currentdir = os.getcwd()
     # pythonpath = currentdir  ##+ "/facenet/src"
     # os.environ["PYTHONPATH"] = pythonpath

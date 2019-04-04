@@ -5,10 +5,12 @@ from __future__ import print_function
 import numpy as np
 import src.facenet as facenet
 import pickle
+import time
 
 
 def classify_face(sess,graph,images_placeholder,embeddings,phase_train_placeholder,embedding_size):
-    img_paths = ["aligned/somename/tmp.png"]
+
+    img_paths = ["tmp.png"]
     pickle_file = "model/my_model.pkl"
     # model = "../../pretrained_model/"
 
@@ -33,11 +35,13 @@ def classify_face(sess,graph,images_placeholder,embeddings,phase_train_placehold
         file = open("mine.txt", "wb")
         file.write(emb_array.tobytes())
 
+        t0 = time.time()
         with open(pickle_file, 'rb') as infile:
             (model, class_names) = pickle.load(infile)
+        t1 = time.time()
 
-        print('Loaded classifier model from file "%s"' % pickle_file)
-
+        print('Loaded classifier model from file "%s in %.3f seconds"' % (pickle_file, (t1 - t0)))
+        #
         predictions = model.predict_proba(emb_array)
         best_class_indices = np.argmax(predictions, axis=1)
         best_class_probabilities = predictions[np.arange(len(best_class_indices)), best_class_indices]
