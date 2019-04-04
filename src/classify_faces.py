@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 
 import numpy as np
-import src.facenet as facenet
+import facenet as facenet
 import pickle
 import time
 

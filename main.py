@@ -1,11 +1,14 @@
 #use FLASK_APP=main.py flask run
 
+import sys
+sys.path.insert(0, './src')
+
 from flask import request
 import os
 import time
 import tensorflow as tf
-import src.facenet as facenet
-import src.classify_faces as classify_faces
+import facenet as facenet
+import classify_faces as classify_faces
 import cv2 as cv
 
 
