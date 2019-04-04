@@ -89,10 +89,14 @@ def get_name():
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
-    x = faces[0][0]
-    y = faces[0][1]
-    w = faces[0][2]
-    h = faces[0][3]
+    try:
+        x = faces[0][0]
+        y = faces[0][1]
+        w = faces[0][2]
+        h = faces[0][3]
+    except IndexError:
+        print("No Faces Found")
+        return "No Faces Found"
 
     roi_color = img[y:y + h, x:x + w]
 
