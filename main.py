@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, './src')
 
 from flask import request
+from flask import render_template
 import os
 import time
 import tensorflow as tf
@@ -70,9 +71,9 @@ def setup_model():
 
 
 @app.route("/")
-def hello():
+def hello(name=None):
     # setup_model()
-    return "Hello World!"
+    return "HELOO" #render_template('index.html',name=name)
 
 @app.route("/testme")
 def testme():
