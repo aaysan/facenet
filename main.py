@@ -68,7 +68,7 @@ def setup_model():
 @app.route("/")
 def hello(name=None):
     # setup_model()
-    return "HELOO" #render_template('index.html',name=name)
+    return render_template('index.html',name=name)
 
 @app.route("/testme")
 def testme():
@@ -77,9 +77,13 @@ def testme():
 
 @app.route('/get_name', methods=['POST'])
 def get_name():
-    # pass
+
     tstart = time.time()
+
     file = request.files['file']
+
+    if file is None:
+        return "No file specified"
 
     print(file.filename)
     file.save(file.filename)
